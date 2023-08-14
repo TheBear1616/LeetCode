@@ -9,14 +9,14 @@ from collections import deque
 
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        if not root: return []
-        que = [root]
+        if not root: return root
+        que = deque([root])
         result = []
-    
+        
         while len(que) > 0:
             level = []
             for i in range(len(que)):
-                node = que.pop(0)
+                node = que.popleft()
                 if node.left: que.append(node.left)
                 if node.right: que.append(node.right)
                 level.append(node.val)
