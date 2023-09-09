@@ -3,7 +3,6 @@ class Solution:
         counts = {}
         mostFreqChar = 0
         left = 0
-        result = 0
 
         for right, ch in enumerate(s):
             counts[ch] = 1 + counts.get(ch, 0)
@@ -12,6 +11,4 @@ class Solution:
                 counts[s[left]] -= 1
                 left += 1
 
-            result = max(result, right - left + 1)
-
-        return result
+        return len(s) - left
