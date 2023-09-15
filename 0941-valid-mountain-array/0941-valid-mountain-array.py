@@ -12,4 +12,7 @@ class Solution:
         while decreasing - 1 > -1 and arr[decreasing] < arr[decreasing - 1]:
             decreasing -= 1
         
-        return increasing == decreasing and increasing != 0 and decreasing != len(arr) - 1
+        if increasing == 0 or decreasing == len(arr) - 1:
+            return False
+        
+        return increasing == decreasing
