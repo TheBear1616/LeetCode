@@ -7,9 +7,7 @@ class Solution:
 
         for num in nums:
             currSum += num
-            diff = currSum - k
-
-            result += prefixSums[diff]
+            result += prefixSums[currSum - k]
             prefixSums[currSum] += 1        
         
         return result
