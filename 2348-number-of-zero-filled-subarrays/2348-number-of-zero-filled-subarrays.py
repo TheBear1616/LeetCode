@@ -1,13 +1,14 @@
 class Solution:
     def zeroFilledSubarray(self, nums: List[int]) -> int:
         result = 0
-        numSubArrays = 0
-
+        numOfSubarrays = 0
+        
         for num in nums:
             if num == 0:
-                numSubArrays += 1
+                numOfSubarrays += 1
             else:
-                numSubArrays = 0
-            result += numSubArrays
-
+                numOfSubarrays = 0
+            
+            result += numOfSubarrays
+        
         return result
