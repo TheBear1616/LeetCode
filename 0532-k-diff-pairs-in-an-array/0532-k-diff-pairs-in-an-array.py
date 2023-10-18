@@ -12,4 +12,3 @@ class Solution:
             seen[num] += 1
         
         return len(uniquePairs)
-        
