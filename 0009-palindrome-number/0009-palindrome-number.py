@@ -7,8 +7,7 @@ class Solution:
         num = x
 
         while x > 0:
-            remainder = x % 10
-            result = (result * 10) + remainder 
+            result = (result * 10) + x % 10 
             x = x // 10
 
         return result == num
