@@ -1,6 +1,3 @@
 class Solution:
     def isSameAfterReversals(self, num: int) -> bool:
-        revNum = int(str(num)[::-1])
-        secRevNum = int(str(revNum)[::-1])
-
-        return num == secRevNum
+        return num == int(str(int(str(num)[::-1]))[::-1])
