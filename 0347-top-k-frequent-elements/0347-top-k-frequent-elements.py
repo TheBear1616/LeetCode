@@ -1,15 +1,11 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freqDict = collections.Counter(nums)
-        freq = [[] for i in range(len(nums) + 1)]
-
-        for n,c in freqDict.items():
-            freq[c].append(n)
+        freqEle = collections.Counter(nums)
+        minHeap = []
         
-        res = []
+        for key, value in freqEle.items():
+            heapq.heappush(minHeap, (value, key))
+            if len(minHeap) > k:
+                heapq.heappop(minHeap)
         
-        for i in range(len(freq)-1, 0, -1):
-            for n in freq[i]:
-                res.append(n)
-                if len(res) == k:
-                    return res
+        return [ key for value, key in minHeap ]
