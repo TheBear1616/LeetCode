@@ -1,28 +1,25 @@
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        def mergesort(nums):
-            if len(nums) == 1: return
-            mid = len(nums)//2
-            left = nums[:mid]
-            right = nums[mid:]
-            
-            mergesort(left)
-            mergesort(right)
-            
-            mergeTwoSortedArrays(left, right, nums)
+        if len(nums) == 1:
+            return nums
         
-        def mergeTwoSortedArrays(a, b , nums):
-            i, j, k = 0, 0, 0
-            while i < len(a) and j < len(b):
-                if a[i] < b[j]:
-                    nums[k] = a[i]
-                    i+=1
-                else:
-                    nums[k] = b[j]
-                    j+=1
-                k+=1
-            
-            nums[k:] = a[i:] if i<len(a) else b[j:]
+        mid = len(nums) // 2
+        left = self.sortArray(nums[: mid])
+        right = self.sortArray(nums[mid: ])
+
+        return self.mergeSort(left, right)
+    
+    def mergeSort(self, left, right):
+        i, j = 0, 0
+        res = []
+
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                res.append(left[i])
+                i += 1
+            else:
+                res.append(right[j])
+                j += 1
         
-        mergesort(nums)
-        return nums
+        res += left[i:] if j == len(right) else right[j:]
+        return res
