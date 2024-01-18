@@ -15,6 +15,6 @@ class Solution:
                 result.append(node.val)
                 preOrder(node.left)
                 preOrder(node.right)
-        
+
         preOrder(root)
         return result
