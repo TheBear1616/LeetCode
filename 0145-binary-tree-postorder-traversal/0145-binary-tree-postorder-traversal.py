@@ -9,12 +9,12 @@ class Solution:
         result = []
         if not root:
             return result
-    
+        
         def postOrder(node):
             if node:
                 postOrder(node.left)
                 postOrder(node.right)
                 result.append(node.val)
-            
+        
         postOrder(root)
         return result
