@@ -6,17 +6,16 @@
 #         self.right = right
 class Solution:
     def minDiffInBST(self, root: Optional[TreeNode]) -> int:
-        self.minDistance = 1e9
-        self.prevNode = None
+        self.result = 1e9
+        self.preVal = 1e9
 
-        def inorder(node):
-            if node is None:
-                return
-            inorder(node.left)
-            if self.prevNode is not None:
-                self.minDistance = min(self.minDistance, node.val - self.prevNode)
-            self.prevNode = node.val
-            inorder(node.right)
-
-        inorder(root)
-        return self.minDistance
+        def dfs(node):
+            if node:
+                dfs(node.left)
+                if self.preVal != 1e9:
+                    self.result = min(self.result, abs(node.val - self.preVal))
+                self.preVal = node.val
+                dfs(node.right)
+        
+        dfs(root)
+        return self.result
