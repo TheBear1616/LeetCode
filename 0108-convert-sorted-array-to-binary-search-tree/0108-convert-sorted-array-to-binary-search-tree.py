@@ -7,7 +7,7 @@
 class Solution:
     def sortedArrayToBST(self, nums: List[int]) -> Optional[TreeNode]:
         def convert(low, high):
-            if (low <= high):
+            if low <= high:
                 mid = (low + high) // 2
                 newNode = TreeNode(nums[mid])
                 newNode.left = convert(low, mid-1)
@@ -16,4 +16,3 @@ class Solution:
                 return newNode
         
         return convert(0, len(nums)-1)
-            
