@@ -1,15 +1,12 @@
 class Solution:
     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
-        closestPoint = []
+        minHeap = []
 
-        for idx, point in enumerate(points):
-            eDistance = self.euclideanDistance(point) * -1
-            heapq.heappush(closestPoint, [eDistance, idx])
-            if len(closestPoint) > k:
-                heapq.heappop(closestPoint)
+        for point in points:
+            x, y = point
+            distance = math.sqrt((x * x) + (y * y))
+            heapq.heappush(minHeap, (-distance, point))
+            if len(minHeap) > k:
+                heapq.heappop(minHeap)
         
-        return [points[point[1]] for point in closestPoint]
-    
-    def euclideanDistance(self, point):
-        x, y = point
-        return math.sqrt((x * x) + (y * y))
+        return [point for distance, point in minHeap]
