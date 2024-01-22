@@ -4,21 +4,22 @@ class Solution:
         cols = len(grid[0])
         maxArea = 0
 
-        for row in range(rows):
-            for col in range(cols):
-                if grid[row][col] == 1:
-                    maxArea = max(maxArea, self.dfs(grid, row, col))
-        
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c] == 1:
+                    maxArea = max(maxArea, self.dfs(grid, r, c))
+
         return maxArea
+    
+    def dfs(self, grid, r, c):
+        if r < 0 or c < 0 or r >= len(grid) or c >= len(grid[0]) or grid[r][c] == 0 or grid[r][c] == -1:
+            return 0
 
-    def dfs(self, grid, row, col) -> int:
-        currArea = 0
-        if row >= 0 and row < len(grid) and col >= 0 and col < len(grid[0]) and grid[row][col] == 1:
-            grid[row][col] = -1
-            currArea = 1
-            currArea += self.dfs(grid, row-1, col)
-            currArea += self.dfs(grid, row+1, col)
-            currArea += self.dfs(grid, row, col-1)
-            currArea += self.dfs(grid, row, col+1)
+        area = 1
+        grid[r][c] = -1
+        area += self.dfs(grid, r - 1, c)
+        area += self.dfs(grid, r + 1, c)
+        area += self.dfs(grid, r, c - 1)
+        area += self.dfs(grid, r, c + 1)
 
-        return currArea
+        return area
