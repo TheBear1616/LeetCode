@@ -8,11 +8,7 @@ class Solution:
                 return True
             
             visit.add((r, c))
-            result = True
-            
-            if grid1[r][c] == 0:
-                result = False
-            
+            result = False if grid1[r][c] == 0 else True
             result = dfs(r+1, c) and result
             result = dfs(r-1, c) and result
             result = dfs(r, c+1) and result
@@ -20,11 +16,11 @@ class Solution:
             
             return result
         
-        count = 0
+        subIslands = 0
         
         for r in range(ROWS):
             for c in range(COLS):
                 if grid2[r][c] and (r,c) not in visit and dfs(r, c):
-                    count += 1
+                    subIslands += 1
         
-        return count
+        return subIslands
