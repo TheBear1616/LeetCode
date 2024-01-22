@@ -1,6 +1,6 @@
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
-        orderIndex = {c: i for i, c in enumerate(order)}
+        orderDict = {c: i for i, c in enumerate(order)}
 
         for i in range(len(words)-1):
             w1, w2 = words[i], words[i+1]
@@ -9,7 +9,7 @@ class Solution:
                 if j >= len(w2): return False
             
                 if w1[j] != w2[j]:
-                    if orderIndex[w2[j]] < orderIndex[w1[j]]:
+                    if orderDict[w2[j]] < orderDict[w1[j]]:
                         return False
                     break
         return True
