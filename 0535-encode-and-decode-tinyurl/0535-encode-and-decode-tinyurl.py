@@ -1,18 +1,19 @@
 class Codec:
+
     def __init__(self):
         self.encodeMap = {}
         self.decodeMap = {}
         self.baseURL = "http://tinyurl.com/"
-    
-    def encode(self, longURL: str) -> str:
-        if longURL not in self.encodeMap:
-            shortURL = self.baseURL + str(len(self.encodeMap) + 1)
-            self.encodeMap[longURL] = shortURL
-            self.decodeMap[shortURL] = longURL
-        return self.encodeMap[longURL]
 
-    def decode(self, shortURL: str) -> str:
-        return self.decodeMap[shortURL]
+    def encode(self, longUrl: str) -> str:
+        if longUrl not in self.encodeMap:
+            shortUrl = self.baseURL + str(len(self.encodeMap) + 1)
+            self.encodeMap[longUrl] = shortUrl
+            self.decodeMap[shortUrl] = longUrl
+        return shortUrl
+
+    def decode(self, shortUrl: str) -> str:
+        return self.decodeMap[shortUrl]
         
 
 # Your Codec object will be instantiated and called as such:
