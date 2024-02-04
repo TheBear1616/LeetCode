@@ -1,14 +1,14 @@
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        wSum = 0
         wStart = 0
-        minSubArrayLen = 1e9
-        currSum = 0
+        result = 1e9
 
-        for wEnd, num in enumerate(nums):
-            currSum += num
-            while (currSum >= target):
-                minSubArrayLen = min(minSubArrayLen, wEnd - wStart + 1)
-                currSum -= nums[wStart]
+        for wEnd in range(len(nums)):
+            wSum += nums[wEnd]
+            while wSum >= target:
+                result = min(result, wEnd - wStart + 1)
+                wSum -= nums[wStart]
                 wStart += 1
-
-        return 0 if minSubArrayLen == 1e9 else minSubArrayLen
+        
+        return result if result != 1e9 else 0
