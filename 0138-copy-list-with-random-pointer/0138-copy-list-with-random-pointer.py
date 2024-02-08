@@ -10,13 +10,12 @@ class Node:
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
         nodeDict = {None: None}
-
+        
         currNode = head
         while currNode:
-            newNode = Node(currNode.val)
-            nodeDict[currNode] = newNode
+            nodeDict[currNode] = Node(currNode.val)
             currNode = currNode.next
-
+        
         currNode = head
         while currNode:
             nodeDict[currNode].next = nodeDict[currNode.next]
