@@ -7,14 +7,16 @@
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         minHeap = []
-        
-        def dfs(root):
-            if root:
-                heapq.heappush(minHeap, root.val * -1)
-                if len(minHeap) > k:
-                    heapq.heappop(minHeap)
-                if root.left: dfs(root.left)
-                if root.right: dfs(root.right)
+
+        def dfs(node):
+            if not node:
+                return 
+            
+            dfs(node.left)
+            if len(minHeap) < k:
+                heapq.heappush(minHeap, node.val)
+            dfs(node.right)
         
         dfs(root)
-        return minHeap[0] * -1
+
+        return minHeap[-1]
