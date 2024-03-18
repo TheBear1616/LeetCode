@@ -1,13 +1,14 @@
 class Solution:
     def maxSubarraySumCircular(self, nums: List[int]) -> int:
-        globalMax, globalMin = nums[0], nums[0]
-        currMax, currMin = nums[0], nums[0]
-        total = nums[0]
-        for num in nums[1:]:
-            currMax = max(currMax + num, num)
-            currMin = min(currMin + num, num)
-            total += num
-            globalMax = max(globalMax, currMax)
-            globalMin = min(globalMin, currMin)
+        globalMax, globalMin = -1e9, 1e9
+        currMax, currMin = 0, 0
+        totalSum = 0
+
+        for num in nums:
+            totalSum += num
+            currMax = max(num, num + currMax)
+            globalMax = max(currMax, globalMax)
+            currMin = min(num, num + currMin)
+            globalMin = min(currMin, globalMin)
         
-        return max(globalMax, total - globalMin) if globalMax > 0 else globalMax
+        return globalMax if globalMax < 0 else max(totalSum - globalMin, globalMax)
