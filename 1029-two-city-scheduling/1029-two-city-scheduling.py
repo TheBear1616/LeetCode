@@ -1,6 +1,5 @@
 class Solution:
     def twoCitySchedCost(self, costs: List[List[int]]) -> int:
-        totalNumCities = len(costs)
         cityA = len(costs) // 2
         cityB = len(costs) // 2
         result = 0
