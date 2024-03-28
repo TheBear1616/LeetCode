@@ -3,10 +3,10 @@ class Solution:
         buy = prices[0]
         profit = 0
 
-        for i in range(1, len(prices)):
-            if prices[i] < buy:
-                buy = prices[i]
+        for price in prices[1:]:
+            if price < buy:
+                buy = price
             
-            profit = max(profit, abs(buy - prices[i]))
+            profit = max(profit, abs(price - buy))
         
         return profit
