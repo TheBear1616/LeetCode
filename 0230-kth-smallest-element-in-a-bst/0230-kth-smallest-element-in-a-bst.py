@@ -15,6 +15,8 @@ class Solution:
             dfs(node.left)
             if len(minHeap) < k:
                 heapq.heappush(minHeap, node.val)
+            else:
+                return minHeap[-1]
             dfs(node.right)
         
         dfs(root)
