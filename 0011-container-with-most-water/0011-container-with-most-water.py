@@ -5,7 +5,7 @@ class Solution:
         result = 0
 
         while left < right:
-            length = height[left] if height[left] < height[right] else height[right]
+            length = min(height[left], height[right])
             width = right - left
 
             result = max(result, length * width)
