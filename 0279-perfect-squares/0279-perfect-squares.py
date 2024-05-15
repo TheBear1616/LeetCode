@@ -5,9 +5,8 @@ class Solution:
 
         for target in range(1, n + 1):
             for num in range(1, target + 1):
-                square = num * num
-                if target - square < 0:
-                    break
-                dp[target] = min(dp[target], 1 + dp[target - square])
-        
+                nSqr = num * num
+                if target - nSqr < 0: break
+                dp[target] = min(dp[target], 1 + dp[target - nSqr])
+
         return dp[n]
